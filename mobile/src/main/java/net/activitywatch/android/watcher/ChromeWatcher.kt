@@ -49,6 +49,10 @@ class ChromeWatcher : AccessibilityService() {
 
         // TODO: This method is called very often, which might affect performance. Future optimizations needed.
 
+        if (event.packageName == null) {
+            return
+        }
+
         // Only track Chrome and System events
         if (event.packageName != "com.android.chrome" && event.packageName != "com.android.systemui") {
             onUrl(null)
