@@ -7,8 +7,10 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.media.session.MediaController
 import android.media.session.MediaSessionManager
+import android.os.Build
 import android.service.notification.NotificationListenerService
 import android.service.notification.StatusBarNotification
+import android.support.annotation.RequiresApi
 import android.util.Log
 import net.activitywatch.android.RustInterface
 import org.json.JSONObject
@@ -20,10 +22,13 @@ class NotificationWatcher : NotificationListenerService() {
 
     private var ri : RustInterface? = null
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate() {
         super.onCreate()
         ri = RustInterface(applicationContext)
         ri?.createBucketHelper(bucket_id, "notification") // TODO: Change event type
+
+        MediaWatcher(this).onCreate() // TODO: Workaround until we understand why MediaWatcher's NotificationListenerService doesn't get started
     }
 
     override fun onDestroy() {
