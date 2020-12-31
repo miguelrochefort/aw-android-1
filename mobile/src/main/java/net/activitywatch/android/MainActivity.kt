@@ -1,27 +1,33 @@
 package net.activitywatch.android
 
-import android.app.usage.UsageStats
+import android.content.Context
+import android.media.AudioManager
 import android.net.Uri
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
+import android.support.design.widget.Snackbar
+import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.telephony.TelephonyManager
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
-import android.support.v4.app.Fragment
-import android.util.Log
 import net.activitywatch.android.fragments.Bucket
 import net.activitywatch.android.fragments.BucketListFragment
 import net.activitywatch.android.fragments.TestFragment
 import net.activitywatch.android.fragments.WebUIFragment
+import net.activitywatch.android.watcher.CastWatcher
 import net.activitywatch.android.watcher.UsageStatsWatcher
+
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
     BucketListFragment.OnListFragmentInteractionListener, WebUIFragment.OnFragmentInteractionListener {
+
+    var mAudioFocusListener: AudioManager.OnAudioFocusChangeListener? = null;
 
     private val TAG = "MainActivity"
 

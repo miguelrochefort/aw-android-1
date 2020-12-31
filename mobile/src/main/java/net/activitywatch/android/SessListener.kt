@@ -29,6 +29,7 @@ public class SessListener(private val callback: (instant: Instant, packageName: 
         val tokens = mutableSetOf<MediaSession.Token>()
         if (controllers != null) {
             for (controller in controllers) {
+//                controller.
                 tokens.add(controller.sessionToken) // Only add tokens that we don't already have.
                 if (!controllersMap.containsKey(controller.sessionToken)) {
                     Log.i("SessListener", "onActiveSessionsChanged [" + controllers.size + "] : " + controller.packageName)

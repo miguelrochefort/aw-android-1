@@ -39,6 +39,27 @@
             </intent-filter>
         </receiver>
 
+        <receiver
+            android:name=".watcher.MultimediaReceiver"
+            android:enabled="true"
+            android:exported="true" >
+
+            <intent-filter>
+
+                <action android:name="com.android.music.metachanged" />
+                <action android:name="com.android.music.playstatechanged" />
+                <action android:name="com.android.music.playbackcomplete" />
+                <action android:name="com.android.music.queuechanged" />
+
+                <!-- Spotify -->
+                <action android:name="com.spotify.music.playbackstatechanged" />
+                <action android:name="com.spotify.music.metadatachanged" />
+                <action android:name="com.spotify.music.queuechanged" />
+
+            </intent-filter>
+
+        </receiver>
+
         <service android:name=".watcher.ChromeWatcher"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter>
@@ -54,5 +75,6 @@
                 <action android:name="android.service.notification.NotificationListenerService" />
             </intent-filter>
         </service>
+
     </application>
 </manifest>

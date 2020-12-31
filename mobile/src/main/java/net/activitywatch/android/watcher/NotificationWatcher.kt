@@ -39,6 +39,7 @@ class NotificationWatcher : NotificationListenerService() {
             getSystemService(Context.AUDIO_SERVICE) as AudioManager
 
         MediaWatcher(this).onCreate() // TODO: Workaround until we understand why MediaWatcher's NotificationListenerService doesn't get started
+        CastWatcher(this).onCreate() // TODO: Why here?
     }
 
     override fun onDestroy() {
